@@ -55,6 +55,30 @@ public class StringExercises {
         System.out.println(close10(13, 8));  //→ 8
         System.out.println(close10(13, 7));  //→ 0
         System.out.println("-".repeat(30));
+
+        System.out.println("Test stringE");
+        System.out.println(stringE("Hello"));  //→ true
+        System.out.println(stringE("Heelle"));  //→ true
+        System.out.println(stringE("Heelele"));  //→ false
+        System.out.println("-".repeat(30));
+
+        System.out.println("Test everyNth");
+        System.out.println(everyNth("Miracle", 2));  //→ "Mrce"
+        System.out.println(everyNth("abcdefg", 2));  //→ "aceg"
+        System.out.println(everyNth("abcdefg", 3));  //→ "adg"
+        System.out.println("-".repeat(30));
+
+        System.out.println("Test monkeyTrouble");
+        System.out.println(monkeyTrouble(true, true));  //→ true
+        System.out.println(monkeyTrouble(false, false));  //→ true
+        System.out.println(monkeyTrouble(true, false));  //→ false
+        System.out.println("-".repeat(30));
+
+        System.out.println("Test parotTrouble");
+        System.out.println(parrotTrouble(true, 6));  //→ true
+        System.out.println(parrotTrouble(true, 7));  //→ false
+        System.out.println(parrotTrouble(false, 6));  //→ false
+        System.out.println("-".repeat(30));
     }
 
 
@@ -154,5 +178,55 @@ public class StringExercises {
         }
         return 0;
     }
+
+    /*
+        Return true if the given string contains between 1 and 3 'e' chars.
+     */
+
+    public static boolean stringE(String str) {
+        int count = 0;
+        for(int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) == 'e')
+                count++;
+        }
+        return (count >= 1 && count <= 3);
+    }
+
+    /*
+
+        Given a non-empty string and an int N, return the string made starting with char 0, and then every Nth char of the string.
+        So if N is 3, use char 0, 3, 6, ... and so on. N is 1 or more.
+     */
+
+    public static String everyNth(String str, int n) {
+        String result = "";
+        for(int i = 0; i < str.length(); i = i + n){
+            result = result + str.charAt(i);
+        }
+        return result;
+    }
+
+    /*
+        We have two monkeys, a and b, and the parameters aSmile and bSmile indicate if each is smiling.
+        We are in trouble if they are both smiling or if neither of them is smiling. Return true if we are in trouble.
+     */
+
+    public static boolean monkeyTrouble(boolean aSmile, boolean bSmile) {
+        if(aSmile == bSmile){
+            return true;
+        }
+        return false;
+    }
+
+    /*
+
+        We have a loud talking parrot. The "hour" parameter is the current hour time in the range 0..23.
+        We are in trouble if the parrot is talking and the hour is before 7 or after 20. Return true if we are in trouble.
+     */
+
+    public static boolean parrotTrouble(boolean talking, int hour) {
+        return (talking  && (hour < 7 || hour > 20));
+    }
+
 
 }
