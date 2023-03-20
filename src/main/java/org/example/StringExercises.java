@@ -79,6 +79,42 @@ public class StringExercises {
         System.out.println(parrotTrouble(true, 7));  //→ false
         System.out.println(parrotTrouble(false, 6));  //→ false
         System.out.println("-".repeat(30));
+
+        System.out.println("Test pasNeg");
+        System.out.println(posNeg(1, -1, false));  //→ true
+        System.out.println(posNeg(-1, 1, false));  //→ true
+        System.out.println(posNeg(-4, -5, true));  //→ true
+        System.out.println("-".repeat(30));
+
+        System.out.println("Test frontBack");
+        System.out.println(frontBack("code"));  //→ "eodc"
+        System.out.println(frontBack("a"));  //→ "a"
+        System.out.println(frontBack("ab"));  //→ "ba"
+        System.out.println("-".repeat(30));
+
+        System.out.println("Test or35");
+        System.out.println(or35(3));  //→ true
+        System.out.println(or35(10));  //→ true
+        System.out.println(or35(8));  //→ false
+        System.out.println("-".repeat(30));
+
+        System.out.println("Test icyHot");
+        System.out.println(icyHot(120, -1));  //→ true
+        System.out.println(icyHot(-1, 120));  //→ true
+        System.out.println(icyHot(2, 120));  //→ false
+        System.out.println("-".repeat(30));
+
+        System.out.println("Test laneTeen");
+        System.out.println(loneTeen(13, 99));  //→ true
+        System.out.println(loneTeen(21, 19));  //→ true
+        System.out.println(loneTeen(13, 13));  //→ false
+        System.out.println("-".repeat(30));
+
+        System.out.println("Test startOz");
+        System.out.println(startOz("ozymandias"));  //→ "oz"
+        System.out.println(startOz("bzoo"));  //→ "z"
+        System.out.println(startOz("oxx"));  //→ "o"
+        System.out.println("-".repeat(30));
     }
 
 
@@ -228,5 +264,75 @@ public class StringExercises {
         return (talking  && (hour < 7 || hour > 20));
     }
 
+    /*
+
+        Given 2 int values, return true if one is negative and one is positive.
+        Except if the parameter "negative" is true, then return true only if both are negative.
+     */
+
+    public static boolean posNeg(int a, int b, boolean negative) {
+        if (negative){
+            return (a < 0 && b < 0);
+        }
+        return ((a > 0 && b < 0) || (a < 0 && b > 0));
+    }
+
+    /*
+        Given a string, return a new string where the first and last chars have been exchanged.
+     */
+
+    public static String frontBack(String str) {
+        if(str.length() <= 1){
+            return str;
+        }
+        char first = str.charAt(0);
+        char last = str.charAt(str.length()-1);
+        String medium = str.substring(1, str.length()-1);
+        return last + medium + first;
+    }
+
+    /*
+        Return true if the given non-negative number is a multiple of 3 or a multiple of 5.
+        Use the % "mod" operator.
+     */
+
+    public static boolean or35(int n) {
+        return ((n % 3 == 0) || (n % 5 == 0));
+    }
+
+    /*
+        Given two temperatures, return true if one is less than 0 and the other is greater than 100.
+     */
+
+    public static boolean icyHot(int temp1, int temp2) {
+        return ((temp1 < 0 && temp2 > 100) || (temp2 < 0 && temp1 > 100));
+    }
+
+    /*
+        We'll say that a number is "teen" if it is in the range 13..19 inclusive.
+         Given 2 int values, return true if one or the other is teen, but not both.
+     */
+
+    public static boolean loneTeen(int a, int b) {
+        boolean aTeen = (a >= 13 && a <= 19);
+        boolean bTeen = (b >= 13 && b <= 19);
+        return (aTeen && !bTeen) || (!aTeen && bTeen);
+    }
+
+    /*
+       Given a string, return a string made of the first 2 chars (if present),
+       however include first char only if it is 'o' and include the second only if it is 'z', so "ozymandias" yields "oz".
+     */
+
+    public static String startOz(String str) {
+        String result = "";
+        if(str.length() >= 1 && str.charAt(0) == 'o') {
+            result = result + str.charAt(0);
+        }
+        if(str.length() >= 2 && str.charAt(1) == 'z') {
+            result = result + str.charAt(1);
+        }
+        return result;
+    }
 
 }
