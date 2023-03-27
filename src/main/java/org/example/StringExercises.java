@@ -115,6 +115,42 @@ public class StringExercises {
         System.out.println(startOz("bzoo"));  //→ "z"
         System.out.println(startOz("oxx"));  //→ "o"
         System.out.println("-".repeat(30));
+
+        System.out.println("Test in3050");
+        System.out.println(in3050(30, 31));  //→ true
+        System.out.println(in3050(30, 41));  //→ false
+        System.out.println(in3050(40, 50));  //→ true
+        System.out.println("-".repeat(30));
+
+        System.out.println("Test lastDigit");
+        System.out.println(lastDigit(7, 17));  //→ true
+        System.out.println(lastDigit(6, 17));  //→ false
+        System.out.println(lastDigit(3, 113));  //→ true
+        System.out.println("-".repeat(30));
+
+        System.out.println("Test sumDouble");
+        System.out.println(sumDouble(1, 2));  //→ 3
+        System.out.println(sumDouble(3, 2));  //→ 5
+        System.out.println(sumDouble(2, 2));  //→ 8
+        System.out.println("-".repeat(30));
+
+        System.out.println("Test makes10");
+        System.out.println(makes10(9, 10));  //→ true
+        System.out.println(makes10(9, 9));  //→ false
+        System.out.println(makes10(1, 9));  //→ true
+        System.out.println("-".repeat(30));
+
+        System.out.println("Test notString");
+        System.out.println(notString("candy"));  //→ "not candy"
+        System.out.println(notString("x"));  //→ "not x"
+        System.out.println(notString("not bad"));  //→ "not bad"
+        System.out.println("-".repeat(30));
+
+        System.out.println("Test front3");
+        System.out.println(front3("Java"));  //→ "JavJavJav"
+        System.out.println(front3("Chocolate"));  //→ "ChoChoCho"
+        System.out.println(front3("abc"));  //→ "abcabcabc"
+        System.out.println("-".repeat(30));
     }
 
 
@@ -334,5 +370,67 @@ public class StringExercises {
         }
         return result;
     }
+
+    /*
+        Given 2 int values, return true if they are both in the range 30..40 inclusive, or they are both in the range 40..50 inclusive.
+     */
+
+    public static boolean in3050(int a, int b) {
+        return (a >= 30 && a <= 40) && (b >= 30 && b <= 40)
+                || (a >= 40 && a <= 50) && (b >= 40 && b <= 50);
+    }
+
+    /*
+        Given two non-negative int values, return true if they have the same last digit, such as with 27 and 57.
+     */
+    public static boolean lastDigit(int a, int b) {
+        return (a % 10 == b % 10);
+    }
+
+    /*
+        Given two int values, return their sum. Unless the two values are the same, then return double their sum.
+     */
+
+    public static int sumDouble(int a, int b) {
+        if(a != b){
+            return a + b;
+        }
+        return (a + b) * 2;
+    }
+
+    /*
+        Given 2 ints, a and b, return true if one if them is 10 or if their sum is 10.
+     */
+
+    public static boolean makes10(int a, int b) {
+        return (a == 10 || b == 10 || a + b == 10);
+    }
+
+    /*
+
+        Given a string, return a new string where "not " has been added to the front.
+        However, if the string already begins with "not", return the string unchanged.
+     */
+
+    public static String notString(String str) {
+        if(str.length() >= 3 && str.substring(0, 3).equals("not")) {
+            return str;
+        }
+        return "not " + str;
+    }
+
+    /*
+        Given a string, we'll say that the front is the first 3 chars of the string.
+        If the string length is less than 3, the front is whatever is there.
+        Return a new string which is 3 copies of the front.
+     */
+
+    public static String front3(String str) {
+        if(str.length() < 3) {
+            return str + str + str;
+        }
+        return str.substring(0,3) + str.substring(0,3) + str.substring(0,3);
+    }
+
 
 }
